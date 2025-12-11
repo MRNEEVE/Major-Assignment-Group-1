@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Tracker System</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="js/storage.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <header>
+        <h1>📦 Inventory Tracker System</h1>
+        <p>Track and manage your inventory easily</p>
+    </header>
+
+    <nav>
+        <button onclick="showPage('dashboard')">Dashboard</button>
+        <button onclick="showPage('inventory')">View Inventory</button>
+        <button onclick="showPage('add-product')">Add Product</button>
+        <button onclick="showPage('reports')">Reports</button>
+    </nav>
+
+    <main>
+        <!-- Dashboard -->
+        <section id="dashboard" class="page active">
+            <h2>📊 Dashboard</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Total Products</h3>
+                    <p id="totalProducts">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Value</h3>
+                    <p id="totalValue">$0.00</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Low Stock</h3>
+                    <p id="lowStockCount">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inventory List -->
+        <section id="inventory" class="page">
+            <h2>📦 Inventory List</h2>
+            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTable">
+                    <!-- Products will load here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Add Product Form -->
+        <section id="add-product" class="page">
+            <h2>➕ Add New Product</h2>
+            <form id="productForm">
+                <input type="text" id="productName" placeholder="Product Name" required>
+                <input type="text" id="productCategory" placeholder="Category" required>
+                <input type="number" id="productQuantity" placeholder="Quantity" required>
+                <input type="number" id="productPrice" placeholder="Price ($)" step="0.01" required>
+                <button type="submit">Add Product</button>
+            </form>
+        </section>
+
+        <!-- Reports -->
+        <section id="reports" class="page">
+            <h2>📈 Reports</h2>
+            <div id="reportContent">
+                <button onclick="exportToCSV()">📥 Export to CSV</button>
+                <div id="chartContainer"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Inventory Tracker System &copy; 2024</p>
+    </footer>
+</body>
+</html>
